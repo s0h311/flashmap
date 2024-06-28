@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  modules: ['@sidebase/nuxt-auth'],
+  modules: ['@sidebase/nuxt-auth', '@primevue/nuxt-module'],
   future: {
     compatibilityVersion: 4,
   },
@@ -56,4 +56,12 @@ export default defineNuxtConfig({
     },
   },
   css: ['~~/app/app.css'],
+  primevue: {
+    components: {
+      include: ['Editor'],
+    },
+    options: {
+      unstyled: true,
+    },
+  },
 })

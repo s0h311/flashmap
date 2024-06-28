@@ -1,7 +1,7 @@
 <template>
   <dialog
     ref="dialog"
-    class="rounded-lg p-5"
+    class="w-full rounded-lg p-5 tablet:w-2/3 desktop:w-1/2"
   >
     <div class="grid gap-7">
       <div class="flex items-center justify-between">
@@ -20,11 +20,17 @@
         autofocus
       />
 
+      <Editor
+        v-model="content"
+        :unstyled="false"
+        editorStyle="height: 500px"
+      />
+
       <button
-        class="btn btn-primary"
+        class="btn btn-primary btn-wide place-self-end"
         @click="handleSubmit"
       >
-        submit
+        Save
       </button>
     </div>
   </dialog>
@@ -32,6 +38,7 @@
 
 <script setup lang="ts">
 import type { Card } from './types'
+import Editor from 'primevue/editor'
 
 const emits = defineEmits<{
   submit: [card: Card]
@@ -45,6 +52,7 @@ defineExpose({
 const dialog = ref<HTMLDialogElement>()
 
 const title = ref<string>('')
+const content = ref<string>('')
 
 function showModal(): void {
   setTimeout(() => {
@@ -56,14 +64,31 @@ function close(): void {
   dialog.value?.close()
 
   title.value = ''
+  content.value = ''
 }
 
 function handleSubmit(): void {
+  if (!title.value) {
+    // TODO handle error
+    return
+  }
+
   emits('submit', {
     title: title.value,
+    content: content.value,
     color: 'purple',
   })
 
   close()
 }
 </script>
+
+<style>
+.p-editor-toolbar {
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.p-editor-content {
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+</style>

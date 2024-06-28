@@ -7,5 +7,6 @@ export type Position = {
 
 export type Card = {
   title: string
+  content?: string
   color: Color
 }

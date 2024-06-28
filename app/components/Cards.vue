@@ -5,6 +5,7 @@
     :x="card.x"
     :y="card.y"
     :title="card.title"
+    :content="card.content"
     :color="card.color"
     @mouse-down="(e: MouseEvent) => mouseDown(e, index)"
   />

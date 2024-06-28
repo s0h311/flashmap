@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h3 {
+  @apply text-xl tracking-wide;
+}
+
+input,
+button {
+  @apply rounded-lg;
+}
+
+.invert-neutral {
+  @apply bg-neutral-content text-neutral;
+}
